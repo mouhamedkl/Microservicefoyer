@@ -1,0 +1,84 @@
+spring:
+
+  main:
+    allow-bean-definition-overriding: true
+    web-application-type : reactive
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/microservices
+          jwk-set-uri: http://localhost:8080/realms/microservices/protocol/openid-connect/certs
+  cloud:
+    gateway:
+      routes:
+        - id: bloc
+          uri: http://localhost:8083
+          predicates:
+            - Path=/bloc/**
+          filters:
+            - name: RequestHeaderToRequestUri
+              args:
+                name: Authorization
+        - id: node
+          uri: http://localhost:5000
+          predicates:
+            - Path=/api/**
+          filters:
+            - name: RequestHeaderToRequestUri
+              args:
+                name: Authorization
+        - id: chambre
+          uri: http://localhost:8085
+          predicates:
+            - Path=/chambre/**
+          filters:
+            - name: RequestHeaderToRequestUri
+              args:
+                name: Authorization
+        - id: etudiant
+          uri: http://localhost:8086
+          predicates:
+            - Path=/etudiant/**
+          filters:
+            - name: RequestHeaderToRequestUri
+              args:
+                name: Authorization
+        - id: foyer
+          uri: http://localhost:8087
+          predicates:
+            - Path=/foyer/**
+          filters:
+            - name: RequestHeaderToRequestUri
+              args:
+                name: Authorization
+        - id: reservation
+          uri: http://localhost:8088
+          predicates:
+            - Path=/reservation/**
+          filters:
+            - name: RequestHeaderToRequestUri
+              args:
+                name: Authorization
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+
+server:
+  port: 8222
+
+
+
+keycloak:
+  server-url: http://localhost:8080
+  resource: gateway-client
+  realm: microservices
+  client-id: gateway-client
+  client-secret: 0JjUfBvbz5yehMjgzdtC7TNEYDvfUkMG
+

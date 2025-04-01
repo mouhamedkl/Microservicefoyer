@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ApiGateway/ApiGateway.iml" filepath="$PROJECT_DIR$/ApiGateway/ApiGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server/ConfigServer.iml" filepath="$PROJECT_DIR$/config-server/ConfigServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discovery/Discovery.iml" filepath="$PROJECT_DIR$/discovery/Discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Foyer/Foyer.iml" filepath="$PROJECT_DIR$/Foyer/Foyer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Microservicefoyer.iml" filepath="$PROJECT_DIR$/.idea/Microservicefoyer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blocservice/blocservice.iml" filepath="$PROJECT_DIR$/blocservice/blocservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chambreservice/chambreservice.iml" filepath="$PROJECT_DIR$/chambreservice/chambreservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etudiantservice/etudiantservice.iml" filepath="$PROJECT_DIR$/etudiantservice/etudiantservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reservation/reservation.iml" filepath="$PROJECT_DIR$/reservation/reservation.iml" />
+    </modules>
+  </component>
+</project>
