@@ -7,13 +7,13 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/microservices
-          jwk-set-uri: http://localhost:8080/realms/microservices/protocol/openid-connect/certs
+          issuer-uri: http://keycloak:8080/realms/microservices
+          jwk-set-uri: http://keycloak:8080/realms/microservices/protocol/openid-connect/certs
   cloud:
     gateway:
       routes:
         - id: bloc
-          uri: http://localhost:8083
+          uri: lb://BLOCSERVICE
           predicates:
             - Path=/bloc/**
           filters:
@@ -29,7 +29,7 @@ spring:
               args:
                 name: Authorization
         - id: chambre
-          uri: http://localhost:8085
+          uri: lb://CHAMBRESERVICE
           predicates:
             - Path=/chambre/**
           filters:
@@ -37,7 +37,7 @@ spring:
               args:
                 name: Authorization
         - id: etudiant
-          uri: http://localhost:8086
+          uri: lb://ETUDIANTSERVICE
           predicates:
             - Path=/etudiant/**
           filters:
@@ -45,7 +45,7 @@ spring:
               args:
                 name: Authorization
         - id: foyer
-          uri: http://localhost:8087
+          uri: lb://FOYER
           predicates:
             - Path=/foyer/**
           filters:
@@ -53,30 +53,20 @@ spring:
               args:
                 name: Authorization
         - id: reservation
-          uri: http://localhost:8088
+          uri: lb://RESERVATION
           predicates:
             - Path=/reservation/**
           filters:
             - name: RequestHeaderToRequestUri
               args:
                 name: Authorization
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
-
-
 server:
   port: 8222
 
 
 
 keycloak:
-  server-url: http://localhost:8080
+  server-url: http://keycloak:8080
   resource: gateway-client
   realm: microservices
   client-id: gateway-client

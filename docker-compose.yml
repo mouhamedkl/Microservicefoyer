@@ -1,0 +1,82 @@
+
+version: '3.8'
+services:
+  discovery-server:
+    build: ./discovery
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-net
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    command: [ "start-dev" ]
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - "8080:8080"
+    networks:
+      - microservices-net
+  config-server:
+    build: ./config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - microservices-net
+  apigateway:
+    build: ./ApiGateway
+    ports:
+      - "8222:8222"
+    depends_on:
+      - config-server
+    networks:
+      - microservices-net
+
+  blocservice:
+    build: ./blocservice
+    ports:
+      - "8083:8083"
+    depends_on:
+      - config-server
+    networks:
+      - microservices-net
+
+  chambreservice:
+    build: ./chambreservice
+    ports:
+      - "8085:8085"
+    depends_on:
+      - config-server
+    networks:
+      - microservices-net
+
+  etudiantservice:
+    build: ./etudiantservice
+    ports:
+      - "8086:8086"
+    depends_on:
+      - config-server
+    networks:
+      - microservices-net
+
+  foyer:
+    build: ./Foyer
+    ports:
+      - "8087:8087"
+    depends_on:
+      - config-server
+    networks:
+      - microservices-net
+
+  reservation:
+    build: ./reservation
+    ports:
+      - "8088:8088"
+    depends_on:
+      - config-server
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    driver: bridge

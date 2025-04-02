@@ -3,10 +3,10 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/microservices
-          jwk-set-uri: http://localhost:8080/realms/microservices/protocol/openid-connect/certs
+          issuer-uri: http://keycloak:8080/realms/microservices
+          jwk-set-uri: http://keycloak:8080/realms/microservices/protocol/openid-connect/certs
   datasource:
-    url: jdbc:mysql://localhost:3306/blocdb_microservice?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://mysqldb:3306/blocdb_microservice?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password:
   jpa:
@@ -23,10 +23,10 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: discovery-server
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+      defaultZone: http://discovery-server:8761/eureka/
 

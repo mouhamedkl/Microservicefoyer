@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>Discovery</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <name>Discovery</name>
     <description>Discovery</description>
     <url/>
@@ -45,10 +45,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
